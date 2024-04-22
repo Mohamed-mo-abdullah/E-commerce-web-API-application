@@ -5,7 +5,7 @@ using Talabat.Core.Repositories.Contract;
 
 namespace Talabat.APIs.Controllers
 {
-   
+
     public class ProductsController : BaseApiController
     {
         private readonly IGenericRepository<Product> _productsRepo;
@@ -23,5 +23,16 @@ namespace Talabat.APIs.Controllers
 
             return Ok(Products);
         }
+        [HttpGet("{id}")]
+
+        public async Task<ActionResult<Product>> GetProducts(int id)
+        {
+            var product  = await _productsRepo.GetAysnc(id);
+
+            if(product is null)
+                return NotFound(); //404
+
+            return Ok(product); //200
+        } 
     }
 }
