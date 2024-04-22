@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Talabat.Core.Entities;
+using Talabat.Core.Repositories.Contract;
+using Talabat.Repository;
 using Talabat.Repository.Data;
 
 namespace Talabat.APIs
@@ -11,7 +14,7 @@ namespace Talabat.APIs
 
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            //// Add services to the container.
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -22,6 +25,12 @@ namespace Talabat.APIs
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            //builder.Services.AddScoped<IGenericRepository<Product>,GenericRepository<Product>>();
+            //builder.Services.AddScoped<IGenericRepository<ProductBrand>, GenericRepository<ProductBrand>>();
+            //builder.Services.AddScoped<IGenericRepository<ProductCategory>, GenericRepository<ProductCategory>>();
+
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));   
 
             var app = builder.Build();
 
@@ -46,6 +55,8 @@ namespace Talabat.APIs
 
                 
             }
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
