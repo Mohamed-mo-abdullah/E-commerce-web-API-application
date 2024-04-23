@@ -31,10 +31,10 @@ namespace Talabat.APIs.Controllers
 
         public async Task<ActionResult<Product>> GetProducts(int id)
         {
-            var spec = new ProductWithBrandAndCategorySpecifications();
+            var spec = new ProductWithBrandAndCategorySpecifications(id);
             
 
-            var product  = await _productsRepo.GetAysnc(id);
+            var product  = await _productsRepo.GetWithSpecAysnc(spec);
 
             if(product is null)
                 return NotFound(); //404
