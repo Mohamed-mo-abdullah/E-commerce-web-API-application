@@ -18,10 +18,10 @@ namespace Talabat.APIs.Dtos
 
         public int BrandId { get; set; }
 
-        public string Brand { get; set; }
+        public string? Brand { get; set; }
 
         public int CategoryId { get; set; }
 
-        public string Category { get; set; }
+        public string? Category { get; set; }
     }
 }
