@@ -7,8 +7,6 @@ namespace Talabat.APIs.Helpers
 {
     public class MappingProfiles:Profile
     {
-        
-
         public MappingProfiles()
         {
            CreateMap<Product, ProductToReturnDto>()
