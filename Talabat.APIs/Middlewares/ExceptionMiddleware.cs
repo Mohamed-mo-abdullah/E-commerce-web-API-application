@@ -4,6 +4,8 @@ using Talabat.APIs.Errors;
 
 namespace Talabat.APIs.Middlewares
 {
+    //By Convension
+    // Middleware ليه اكثر من طريقه لعمله 
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
