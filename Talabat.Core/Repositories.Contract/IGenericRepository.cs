@@ -10,11 +10,11 @@ namespace Talabat.Core.Repositories.Contract
 {
     public interface IGenericRepository<T> where T : BaseEntity
     {
-        Task<IEnumerable<T>> GetAllAysnc();
+        Task<IReadOnlyList<T>> GetAllAysnc();
 
         Task<T?> GetAysnc(int Id);
 
-        Task<IEnumerable<T>> GetAllWithSpecAysnc(ISpecification<T> spec);
+        Task<IReadOnlyList<T>> GetAllWithSpecAysnc(ISpecification<T> spec);
 
         Task<T?> GetWithSpecAysnc(ISpecification<T> spec);
         
