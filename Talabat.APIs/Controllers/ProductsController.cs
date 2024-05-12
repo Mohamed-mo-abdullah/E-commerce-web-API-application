@@ -32,9 +32,9 @@ namespace Talabat.APIs.Controllers
 
         [HttpGet]
 
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts(string sort)
         {
-            var spec = new BaseSpecification<Product>();
+            var spec = new ProductWithBrandAndCategorySpecifications(sort);
 
             var Products = await _productsRepo.GetAllWithSpecAysnc(spec);
 
