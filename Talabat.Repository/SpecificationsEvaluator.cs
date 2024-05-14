@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,10 @@ namespace Talabat.Infrastrcuture
                 query = query.OrderBy(spec.OrderBy);
             else if (spec.OrderByDesc is not null)
                 query = query.OrderByDescending(spec.OrderByDesc);
+
+
+            if(spec.IsPaginatioEnabled)
+                query = query.Skip(spec.Skip).Take(spec.Take); 
 
             query=spec.Includes.Aggregate(query,(currentQuery,includeExpression)=>currentQuery.Include(includeExpression));
 
